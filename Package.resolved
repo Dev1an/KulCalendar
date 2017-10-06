@@ -1,0 +1,52 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Kanna",
+        "repositoryURL": "https://github.com/tid-kijyun/Kanna.git",
+        "state": {
+          "branch": "feature/v4.0.0",
+          "revision": "9091f84ed0e39b7fa8536da98a1812c3456bc4e3",
+          "version": null
+        }
+      },
+      {
+        "package": "Nimble",
+        "repositoryURL": "https://github.com/Quick/Nimble.git",
+        "state": {
+          "branch": null,
+          "revision": "38c9ab0846a3fbec308eb2aa9ef68b10a7434eb4",
+          "version": "7.0.2"
+        }
+      },
+      {
+        "package": "Quick",
+        "repositoryURL": "https://github.com/Quick/Quick.git",
+        "state": {
+          "branch": null,
+          "revision": "e4fa1e85c0305ba4e0866f25812d3fa398f3a048",
+          "version": "1.1.0"
+        }
+      },
+      {
+        "package": "Result",
+        "repositoryURL": "https://github.com/antitypical/Result.git",
+        "state": {
+          "branch": null,
+          "revision": "7477584259bfce2560a19e06ad9f71db441fff11",
+          "version": "3.2.4"
+        }
+      },
+      {
+        "package": "SwiftClibxml2",
+        "repositoryURL": "https://github.com/tid-kijyun/SwiftClibxml2.git",
+        "state": {
+          "branch": null,
+          "revision": "c4e67cc970273fc2bee978d12e422974ff184de7",
+          "version": "1.0.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
