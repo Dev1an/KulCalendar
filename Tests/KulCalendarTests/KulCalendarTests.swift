@@ -3,14 +3,13 @@ import XCTest
 import iCalendar
 import Kanna
 
+
 class KulCalendarTests: XCTestCase {
+	
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-
-		let gregorianCalendar = Foundation.Calendar.current
-		let europeBrussels = TimeZone(identifier: "Europe/Brussels")
 		
 		let start = gregorianCalendar.date(
 			from: DateComponents(
@@ -43,16 +42,8 @@ class KulCalendarTests: XCTestCase {
     }
 	
 	func testParseSchedule() {
-		let comparativeLanguagesSchedule = try! downloadSchedule()
-		let courseInfo = comparativeLanguagesSchedule.xpath("/html/body/center/table[8]/tr/td[position() >= 2 and not(position() > 5)]").makeIterator()
-		for element in courseInfo {
-			print("info:", element.text!.trimmingCharacters(in: .whitespacesAndNewlines))
-		}
-		let dates = comparativeLanguagesSchedule.xpath("/html/body/center/table[9]/tr").first!.css("td > font > i").makeIterator()
-		
-		for date in dates {
-			print("date:", date.text!)
-		}
+		let calendar = Calendar(events: events(from: try! downloadSchedule()) )
+		try? Writer.write(calendar: calendar).write(toFile: "/tmp/testke.ics", atomically: true, encoding: .utf8)
 	}
 
     static var allTests = [
