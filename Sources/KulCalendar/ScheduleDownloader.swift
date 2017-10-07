@@ -33,16 +33,16 @@ func events(from htmlDocument: HTMLDocument) -> [Event] {
 		let courseInfo = ruler.xpath("../../../preceding::table[1]/tr/td[position() >= 2]").makeIterator()
 		let dates = ruler.xpath("../../../tr").first!.css("td > font > i").makeIterator()
 		
-		let getString: ()->String = {courseInfo.next()!.text!.trimmingCharacters(in: .whitespacesAndNewlines)}
-		let timespan = getString()
+		let readString: ()->String = {courseInfo.next()!.text!.trimmingCharacters(in: .whitespacesAndNewlines)}
+		let timespan = readString()
 			.components(separatedBy: " to ")
 			.map {
 				$0.components(separatedBy: ":")
-					.map {Int($0)!}
-		}
-		let location = getString()
-		let courseID = getString()
-		let courseName = getString()
+				  .map {Int($0)!}
+			}
+		let location = readString()
+		let courseID = readString()
+		let courseName = readString()
 		
 		for dateElement in dates {
 			let dateString = dateElement.text!
