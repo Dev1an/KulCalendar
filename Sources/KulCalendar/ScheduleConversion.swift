@@ -10,7 +10,7 @@ func downloadSchedule() throws -> HTMLDocument {
 	return try HTML(url: distributedURL, encoding: .utf8)
 }
 
-let gregorianCalendar = Foundation.Calendar.current
+let gregorianCalendar = Calendar(identifier: .gregorian)
 let europeBrussels = TimeZone(identifier: "Europe/Brussels")
 
 func date(dayAndMonth: String, time: [Int]) -> Date {
