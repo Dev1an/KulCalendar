@@ -42,8 +42,14 @@ class KulCalendarTests: XCTestCase {
     }
 	
 	func testParseSchedule() {
-		let calendar = Calendar(events: events(from: try! downloadSchedule()) )
-		try? Writer.write(calendar: calendar).write(toFile: "/tmp/testke.ics", atomically: true, encoding: .utf8)
+		do {
+			let distrubutedSchedule = try HTML(url: distributedURL, encoding: .utf8)
+			let comparativeSchedule = try HTML(url: comparativeLanguagesURL, encoding: .utf8)
+			let calendar = try Calendar(events: events(from: distrubutedSchedule) + events(from: comparativeSchedule) )
+			try Writer.write(calendar: calendar).write(toFile: "/tmp/testke.ics", atomically: true, encoding: .utf8)
+		} catch {
+			XCTFail(error.localizedDescription)
+		}
 	}
 
     static var allTests = [
