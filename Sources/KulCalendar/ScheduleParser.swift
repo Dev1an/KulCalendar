@@ -18,7 +18,7 @@ func date(dayAndMonth: String, time: [Int]) -> Date {
 	).date!
 }
 
-enum HTMLParsingError: Error {
+enum HTMLParsingError: String, Error {
 	case datesNotFound
 	case timeSpanNotFound
 	case locationNotFound
@@ -41,9 +41,9 @@ func events(from schedule: HTMLDocument) throws -> [Event] {
 			guard let result = courseInfo.next()?.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {throw error}
 			return result
 		}
-		let timespan   = try readString(error: .timeSpanNotFound) // "10:30 to 12:30"
-		let location   = try readString(error: .locationNotFound) // "200A 00.225"
-		let courseID   = try readString(error: .courseIdNotFound) // "Hs01a"
+		let timespan   = try readString(error:   .timeSpanNotFound) // "10:30 to 12:30"
+		let location   = try readString(error:   .locationNotFound) // "200A 00.225"
+		let courseID   = try readString(error:   .courseIdNotFound) // "Hs01a"
 		let courseName = try readString(error: .courseNameNotFound) // "Distributed systems lecture"
 		
 		let timeComponents = timespan
@@ -68,7 +68,6 @@ func events(from schedule: HTMLDocument) throws -> [Event] {
 					location: location
 				)
 			)
-			print("\(DateFormatter.localizedString(from: startDate, dateStyle: .short, timeStyle: .short)) - \(DateFormatter.localizedString(from: endDate, dateStyle: .none, timeStyle: .short)): \(courseName) in \(location) #\(courseID)")
 		}
 		
 	}
