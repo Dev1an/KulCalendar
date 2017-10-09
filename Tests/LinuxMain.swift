@@ -1,6 +1,12 @@
+#if os(Linux)
+
 import XCTest
-@testable import KulCalendarTests
+@testable import AppTests
 
 XCTMain([
-    testCase(KulCalendarTests.allTests),
+    // AppTests
+    testCase(PostControllerTests.allTests),
+    testCase(RouteTests.allTests)
 ])
+
+#endif

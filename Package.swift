@@ -1,30 +1,26 @@
 // swift-tools-version:4.0
-// The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
     name: "KulCalendar",
     products: [
-        // Products define the executables and libraries produced by a package, and make them visible to other packages.
-        .library(
-            name: "KulCalendar",
-            targets: ["KulCalendar"]),
+        .library(name: "App", targets: ["App"]),
+        .executable(name: "Run", targets: ["Run"])
     ],
     dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
-		.package(url: "https://github.com/dev1an/iCalendar", .revision("ce639cd2d9debb1635703101f6bf16380e9fbe91")),
-		.package(url: "https://github.com/tid-kijyun/Kanna.git", .branch("feature/v4.0.0"))
+		.package(url: "https://github.com/dev1an/iCalendar", .revision("da81bfedb12ea261ddaff97e32dbe4b7d5d2e962")),
+		.package(url: "https://github.com/tid-kijyun/Kanna.git", .branch("feature/v4.0.0")),
+        .package(url: "https://github.com/vapor/vapor.git", .upToNextMajor(from: "2.1.0"))
     ],
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages which this package depends on.
-        .target(
-            name: "KulCalendar",
-            dependencies: ["iCalendar", "Kanna"]),
-        .testTarget(
-            name: "KulCalendarTests",
-            dependencies: ["KulCalendar"]),
+        .target(name: "App", dependencies: ["Vapor", "iCalendar", "Kanna"],
+                exclude: [
+                    "Config",
+                    "Public",
+                    "Resources",
+                ]),
+        .target(name: "Run", dependencies: ["App"]),
+        .testTarget(name: "AppTests", dependencies: ["App", "Testing"])
     ]
 )
