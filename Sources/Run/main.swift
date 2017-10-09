@@ -4,6 +4,7 @@ import App
 import Foundation
 import Kanna
 import iCalendar
+import Dispatch
 
 func events(from url: URL) throws -> [iCalendar.Event] {
 	let redirectionFollower = Follower()
