@@ -39,7 +39,24 @@ func events(from url: URL) throws -> [iCalendar.Event] {
 	return semester1Events + semester2Events
 }
 
-let calendar = Calendar(
-	events: try events(from: comparativeLanguagesURL) + events(from: distributedURL) + events(from: softwareArchitectureURL)
-)
+let courseURLs = [comparativeLanguagesURL, distributedURL, softwareArchitectureURL]
+let group = DispatchGroup()
+var events = [iCalendar.Event]()
+let start = Date()
+for url in courseURLs {
+	group.enter()
+	DispatchQueue.global(qos: .userInitiated).async {
+		do {
+			events.append(contentsOf: try events(from: url))
+		} catch {
+			print("❌", error)
+		}
+		group.leave()
+	}
+}
+
+group.wait()
+let end = Date()
+print(end.timeIntervalSince(start))
+let calendar = Calendar(events: events)
 try Writer.write(calendar: calendar).write(toFile: "/tmp/KulCal.ics", atomically: true, encoding: .utf8)
