@@ -10,7 +10,7 @@ let package = Package(
     ],
     dependencies: [
 		.package(url: "https://github.com/dev1an/iCalendar", .revision("da81bfedb12ea261ddaff97e32dbe4b7d5d2e962")),
-		.package(url: "https://github.com/tid-kijyun/Kanna.git", .branch("feature/v4.0.0")),
+		.package(url: "https://github.com/enricode/Kanna.git", .branch("feature/v4.0.0")),
         .package(url: "https://github.com/vapor/vapor.git", .upToNextMajor(from: "2.1.0"))
     ],
     targets: [

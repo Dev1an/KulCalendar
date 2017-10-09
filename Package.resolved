@@ -84,10 +84,10 @@
       },
       {
         "package": "Kanna",
-        "repositoryURL": "https://github.com/tid-kijyun/Kanna.git",
+        "repositoryURL": "https://github.com/enricode/Kanna.git",
         "state": {
           "branch": "feature/v4.0.0",
-          "revision": "9091f84ed0e39b7fa8536da98a1812c3456bc4e3",
+          "revision": "770972a532f942b0585a63bffd6cf8b6848d9a05",
           "version": null
         }
       },
