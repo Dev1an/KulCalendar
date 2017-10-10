@@ -2,10 +2,6 @@ import iCalendar
 import Kanna
 import Foundation
 
-public let comparativeLanguagesURL = URL(string: "http://www.kuleuven.be/sapredir/uurrooster/pre_laden.htm?OBJID=52894805&OTYPE=SM&TAAL=E&SEL_JAAR=2017")!
-public let distributedURL = URL(string: "http://www.kuleuven.be/sapredir/uurrooster/pre_laden.htm?OBJID=52370724&OTYPE=SM&TAAL=E&SEL_JAAR=2017")!
-public let softwareArchitectureURL = URL(string: "http://www.kuleuven.be/sapredir/uurrooster/pre_laden.htm?OBJID=54072110&OTYPE=SM&TAAL=E&SEL_JAAR=2017")!
-
 let gregorianCalendar = Calendar(identifier: .gregorian)
 let europeBrussels = TimeZone(identifier: "Europe/Brussels")
 
