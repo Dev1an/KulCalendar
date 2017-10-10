@@ -19,7 +19,7 @@ func date(dayAndMonth: [Int], time: [Int]) -> Date {
 	}
 	let year = inFirstSemester(month: dayAndMonth[1]) ? firstYear : firstYear+1
 	return DateComponents(
-		calendar: gregorianCalendar, timeZone: europeBrussels,
+		calendar: gregorianCalendar,
 		year: year, month: dayAndMonth[1], day: dayAndMonth[0],
 		hour: time[0], minute: time[1]
 	).date!
