@@ -7,6 +7,7 @@ drop.get("*") { request in
 }
 
 if let privateKey = drop.config["keys", "damiaan"]?.string {
+	print("private key", privateKey)
 	drop.get("key", privateKey) { request in
 		return createCalendar()
 	}
