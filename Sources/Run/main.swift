@@ -3,7 +3,7 @@ import App
 
 let drop = try Droplet()
 drop.get("*") { request in
-	return "The vapor hosted version of KulCal is currently only in private beta."
+	return "The vapor hosted version of KulCal is currently in private beta."
 }
 
 if let privateKey = drop.config["keys", "damiaan"]?.string {
