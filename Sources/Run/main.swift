@@ -23,4 +23,6 @@ if let privateKey = drop.config["keys", "damiaan"]?.string {
 	}
 }
 
+print("Version 0.0.1")
+
 try drop.run()
