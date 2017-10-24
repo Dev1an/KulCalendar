@@ -54,10 +54,12 @@ public func createCalendar() -> String {
 	let group = DispatchGroup()
 	var events = [iCalendar.Event]()
 	for url in courseURLs {
+		print("visiting", url)
 		group.enter()
 		DispatchQueue.global(qos: .userInitiated).async {
 			do {
 				events.append(contentsOf: try parseEvents(from: url))
+				print("events from url loaded")
 			} catch {
 				print("❌", error)
 			}
