@@ -11,9 +11,9 @@ import Kanna
 import iCalendar
 import Dispatch
 
-let comparativeLanguagesURL = URL(string: "http://www.kuleuven.be/sapredir/uurrooster/pre_laden.htm?OBJID=52894805&OTYPE=SM&TAAL=E&SEL_JAAR=2017")!
-let distributedURL = URL(string: "http://www.kuleuven.be/sapredir/uurrooster/pre_laden.htm?OBJID=52370724&OTYPE=SM&TAAL=E&SEL_JAAR=2017")!
-let softwareArchitectureURL = URL(string: "http://www.kuleuven.be/sapredir/uurrooster/pre_laden.htm?OBJID=54072110&OTYPE=SM&TAAL=E&SEL_JAAR=2017")!
+let comparativeLanguagesURL = URL(string: "https://www.kuleuven.be/sapredir/uurrooster/pre_laden.htm?OBJID=52894805&OTYPE=SM&TAAL=E&SEL_JAAR=2017")!
+let distributedURL = URL(string: "https://www.kuleuven.be/sapredir/uurrooster/pre_laden.htm?OBJID=52370724&OTYPE=SM&TAAL=E&SEL_JAAR=2017")!
+let softwareArchitectureURL = URL(string: "https://www.kuleuven.be/sapredir/uurrooster/pre_laden.htm?OBJID=54072110&OTYPE=SM&TAAL=E&SEL_JAAR=2017")!
 let courseURLs = [comparativeLanguagesURL, distributedURL, softwareArchitectureURL]
 
 func parseEvents(from url: URL) throws -> [iCalendar.Event] {
