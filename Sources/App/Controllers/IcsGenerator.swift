@@ -71,3 +71,27 @@ public func createCalendar() -> String {
 	let calendar = Calendar(events: events)
 	return Writer.write(calendar: calendar)
 }
+
+public func debugCalendar() -> Response {
+	return Response { (chunker) in
+		let group = DispatchGroup()
+		for url in courseURLs {
+			print("visiting", url)
+			group.enter()
+			DispatchQueue.global(qos: .userInitiated).async {
+				do {
+					try chunker.write("visiting URL\n")
+					let x = try parseEvents(from: url)
+					try chunker.write("read \(x.count) bytes from url\n")
+				} catch {
+					print("❌", error)
+				}
+				group.leave()
+			}
+		}
+		
+		group.wait()
+		try chunker.close()
+	}
+}
+

@@ -13,6 +13,12 @@ drop.get("custom") { request in
 	return drop.config["app", "custom"]?.string ?? "Custom config variable not defined"
 }
 
+drop.get("debug") { request in
+	print("start debug task")
+	
+	return debugCalendar()
+}
+
 if let privateKey = drop.config["keys", "damiaan"]?.string {
 	print("private key", privateKey)
 	drop.get("key", privateKey) { request in
