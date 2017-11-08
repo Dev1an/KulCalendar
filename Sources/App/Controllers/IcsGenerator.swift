@@ -18,12 +18,13 @@ let courseURLs = [comparativeLanguagesURL, distributedURL, softwareArchitectureU
 
 func parseEvents(from url: URL) throws -> [iCalendar.Event] {
 	let redirectionFollower = Follower()
+	let scheduleLoader = ScheduleLoader()
 	
-	let weekSchedule = try EngineClient.factory.get(url.absoluteString, through: [ScheduleLoader.shared, redirectionFollower])
+	let weekSchedule = try EngineClient.factory.get(url.absoluteString, through: [scheduleLoader, redirectionFollower])
 	guard let scheduleUri = weekSchedule.headers[Follower.finalDestinationHeader], let client = redirectionFollower.lastClient else { fatalError("No redirection") }
 	let showSemester1View = Request(method: .post, uri: scheduleUri)
 	showSemester1View.formURLEncoded = try Node(node: ["onInputProcessing(semester)": ""])
-	let semester1Response = try client.respond(to: showSemester1View, through: [ScheduleLoader.shared, redirectionFollower])
+	let semester1Response = try client.respond(to: showSemester1View, through: [scheduleLoader, redirectionFollower])
 	guard let bytes = semester1Response.body.bytes else { fatalError("no bytes in schedule") }
 	let semester1Events = try events(
 		from: try HTML(
@@ -38,7 +39,7 @@ func parseEvents(from url: URL) throws -> [iCalendar.Event] {
 		"typedatum": "2",
 		"onInputProcessing(semester)": ""
 		])
-	let semester2Response = try client.respond(to: showSemester2View, through: [ScheduleLoader.shared, redirectionFollower])
+	let semester2Response = try client.respond(to: showSemester2View, through: [scheduleLoader, redirectionFollower])
 	guard let semester2bytes = semester2Response.body.bytes else { fatalError("no bytes in schedule") }
 	let semester2Events = try events(
 		from: try HTML(
