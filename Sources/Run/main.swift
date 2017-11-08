@@ -1,10 +1,12 @@
 import Vapor
 import App
 
+var count: UInt = 0
+
 let drop = try Droplet()
 drop.get("*") { request in
 	print(Date(), "private beta")
-	return "The vapor hosted version of KulCal is currently in private beta."
+	return "The vapor hosted version of KulCal is currently in private beta.\ncrawled \(count) times"
 }
 
 drop.get("custom") { request in
@@ -15,7 +17,9 @@ if let privateKey = drop.config["keys", "damiaan"]?.string {
 	print("private key", privateKey)
 	drop.get("key", privateKey) { request in
 		print("start private request")
-		return createCalendar()
+		let calendar = createCalendar()
+		count += 1
+		return calendar
 	}
 } else {
 	drop.get("key", "*") { request in
